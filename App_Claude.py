@@ -482,7 +482,7 @@ if st.session_state.activated:
             st.session_state.chat_history.append(HumanMessage(content=st.session_state.user_input_text))
             st.session_state.thinking = True
             st.session_state.user_input_text = ""
-            st.rerun()
+            #st.rerun()
 
     # Input area
     col1, col2 = st.columns([5, 1])
