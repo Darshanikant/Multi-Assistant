@@ -368,6 +368,11 @@ with st.sidebar:
 
     # Activate button
     activate = st.button("🚀 Activate Assistant", use_container_width=True)
+    # Refresh chat button
+    if st.session_state.activated:
+        if st.button("🔄 Refresh Chat", use_container_width=True):
+            st.session_state.chat_history = [SystemMessage(content=ASSISTANT_PROFILES[st.session_state.assistant_name]["description"])]
+            st.rerun()
 
     # Footer
     st.markdown("---")
