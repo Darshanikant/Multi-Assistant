@@ -318,32 +318,31 @@ if "assistant_name" not in st.session_state:
     st.session_state.assistant_name = ""
 if "user_input_text" not in st.session_state:
     st.session_state.user_input_text = ""
-
-# Sidebar setup
 with st.sidebar:
     st.markdown("<h2>🔧 Assistant Setup</h2>", unsafe_allow_html=True)
-    
+
     # Assistant selection
     st.markdown("### Choose your assistant")
-    
+
     # Create radio buttons for assistant selection
     assistant = st.selectbox(
         "Select an assistant:",
         list(ASSISTANT_PROFILES.keys()),
         label_visibility="collapsed",
-        key="assistant_select"
+        key="assistant_select",
+        on_change=lambda: st.session_state.update(chat_history=[SystemMessage(content=ASSISTANT_PROFILES[st.session_state.assistant_select]["description"])] if st.session_state.get("activated") else [], activated=False, model=None, thinking=False, assistant_name=st.session_state.assistant_select, user_input_text="")
     )
-    
+
     # Display selected assistant info
     profile = ASSISTANT_PROFILES[assistant]
     st.markdown(
         f"""
-        <div style='background-color: #252525; 
-                    padding: 15px; 
-                    border-radius: 10px; 
-                    border-left: 4px solid {profile['color']};
-                    margin: 10px 0 20px 0;
-                    border: 1px solid #3d3d3d;'>
+        <div style='background-color: #252525;
+                        padding: 15px;
+                        border-radius: 10px;
+                        border-left: 4px solid {profile['color']};
+                        margin: 10px 0 20px 0;
+                        border: 1px solid #3d3d3d;'>
             <div style='font-size: 2rem; margin-bottom: 10px;'>{profile['icon']}</div>
             <h3 style='color: {profile['color']}; margin: 0;'>{assistant}</h3>
             <p style='margin-top: 8px; font-size: 14px; color: #b0b0b0;'>{profile['description']}</p>
@@ -351,7 +350,7 @@ with st.sidebar:
         """,
         unsafe_allow_html=True
     )
-    
+
     # API key input
     st.markdown("### API Configuration")
     with st.container():
@@ -366,10 +365,10 @@ with st.sidebar:
         )
         user_api_key = st.text_input("Gemini API Key:", type="password", label_visibility="collapsed")
         st.markdown("</div>", unsafe_allow_html=True)
-    
+
     # Activate button
     activate = st.button("🚀 Activate Assistant", use_container_width=True)
-    
+
     # Footer
     st.markdown("---")
     st.markdown(
@@ -378,7 +377,7 @@ with st.sidebar:
             <p>Your API key is used only for this session and is not stored.</p>
             <p>© 2025 Multi-Assistance Chatbot</p>
         </div>
-        """, 
+        """,
         unsafe_allow_html=True
     )
 
@@ -405,12 +404,11 @@ if st.session_state.activated:
         <div class='main-header'>
             <h1>Your {assistant} Chatbot</h1>
             <p>Your personal AI assistant powered by Google Gemini</p>
-            <p>The Output may be incorrect don't be standalone😊</p>
         </div>
-        """, 
+        """,
         unsafe_allow_html=True
     )
-    
+
     # Assistant title
     profile = ASSISTANT_PROFILES[assistant]
     st.markdown(
@@ -421,24 +419,24 @@ if st.session_state.activated:
         """,
         unsafe_allow_html=True
     )
-    
+
     # Chat area
     chat_container = st.container()
     with chat_container:
         st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
-        
+
         # Welcome message if chat is empty
         if len(st.session_state.chat_history) <= 1:  # Only system message
             st.markdown(
                 f"""
                 <div class='bot-message' style='border-left: 3px solid {profile['color']};'>
-                    <strong style='color: {profile['color']};'>{profile['icon']} {assistant.split(" ", 1)[1]}:</strong> 
+                    <strong style='color: {profile['color']};'>{profile['icon']} {assistant.split(" ", 1)[1]}:</strong>
                     Hello! I'm your {assistant.split(" ", 1)[1]}. How can I help you today?
                 </div>
-                """, 
+                """,
                 unsafe_allow_html=True
             )
-        
+
         # Display chat history
         for msg in st.session_state.chat_history:
             if isinstance(msg, HumanMessage):
@@ -447,7 +445,7 @@ if st.session_state.activated:
                     <div class='user-message' style='border-right: 3px solid {profile['accent_color']};'>
                         <strong style='color: {profile['accent_color']};'>You:</strong> {msg.content}
                     </div>
-                    """, 
+                    """,
                     unsafe_allow_html=True
                 )
             elif isinstance(msg, AIMessage):
@@ -456,10 +454,10 @@ if st.session_state.activated:
                     <div class='bot-message' style='border-left: 3px solid {profile['color']};'>
                         <strong style='color: {profile['color']};'>{profile['icon']} {assistant.split(" ", 1)[1]}:</strong> {msg.content}
                     </div>
-                    """, 
+                    """,
                     unsafe_allow_html=True
                 )
-        
+
         # Typing indicator
         if st.session_state.thinking:
             st.markdown(
@@ -472,12 +470,12 @@ if st.session_state.activated:
                         <div class='typing-dot'></div>
                     </div>
                 </div>
-                """, 
+                """,
                 unsafe_allow_html=True
             )
-        
+
         st.markdown("</div>", unsafe_allow_html=True)
-    
+
     # Message handler
     def handle_send():
         if st.session_state.user_input_text.strip():
@@ -485,7 +483,7 @@ if st.session_state.activated:
             st.session_state.thinking = True
             st.session_state.user_input_text = ""
             st.rerun()
-    
+
     # Input area
     col1, col2 = st.columns([5, 1])
     with col1:
@@ -498,7 +496,7 @@ if st.session_state.activated:
         )
     with col2:
         send_button = st.button("Send", key="send_button", use_container_width=True, on_click=handle_send)
-    
+
     # Process the response
     if st.session_state.thinking:
         try:
@@ -520,10 +518,10 @@ else:
             <h1>✨ Multi-Assistant Chatbot</h1>
             <p>Your personal AI assistant powered by Google Gemini</p>
         </div>
-        """, 
+        """,
         unsafe_allow_html=True
     )
-    
+
     # Welcome message
     st.markdown(
         """
@@ -531,14 +529,14 @@ else:
             <h2>Welcome to Multi-Assistant Chatbot!</h2>
             <p>Select an assistant and enter your API key in the sidebar to get started.</p>
         </div>
-        """, 
+        """,
         unsafe_allow_html=True
     )
-    
+
     # Display assistant cards in a grid
     st.markdown("<div style='margin-top: 2rem;'>", unsafe_allow_html=True)
     cols = st.columns(3)
-    
+
     for i, (name, profile) in enumerate(ASSISTANT_PROFILES.items()):
         with cols[i % 3]:
             st.markdown(
@@ -551,9 +549,9 @@ else:
                 """,
                 unsafe_allow_html=True
             )
-    
+
     st.markdown("</div>", unsafe_allow_html=True)
-    
+
     # Instructions
     st.markdown(
         """
@@ -571,7 +569,7 @@ else:
         """,
         unsafe_allow_html=True
     )
-    
+
     # Footer
     st.markdown(
         """
