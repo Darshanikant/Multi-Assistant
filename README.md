@@ -19,17 +19,18 @@ Users can interact with the chatbot by selecting their preferred role, and the c
 
 ## Live Demo
 You can try out the app live here:  
-[Live Demo Link](Your_Live_App_Link_Here)
+https://multi-assistant-vwsttdlktlk4xvtnrrvq8r.streamlit.app/
 
 ## Sample Image of the App
-![App Screenshot](path_to_your_sample_image.png)
+![image](https://github.com/user-attachments/assets/adcd1587-604c-4cad-b0ab-62e8ae0f9b08)
+
 
 ## Installation
 To run the app locally, follow these steps:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/your-repo-name.git
+    git clone https://github.com/Darshanikant/Multi-Assistant.git
     cd your-repo-name
     ```
 
@@ -63,18 +64,11 @@ To run the app locally, follow these steps:
 - LangChain
 - Google Generative AI (Gemini API)
 - python-dotenv
+- langchain_google_genai
 
 ## Usage
 - Select a role from the options on the sidebar.
 - Interact with the chatbot by typing your queries.
 - The chatbot will provide a response based on the selected role.
 
-## Contributions
-Contributions are welcome! Please fork the repo, create a new branch, and submit a pull request.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-Thanks to **Google Gemini API**, **LangChain**, and **Streamlit** for providing the tools and technologies used in building this app.
-
+# Thanks For Visiting
