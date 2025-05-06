@@ -405,6 +405,7 @@ if st.session_state.activated:
         <div class='main-header'>
             <h1>Your {assistant} Chatbot</h1>
             <p>Your personal AI assistant powered by Google Gemini</p>
+            <p>The Out may be incorrect don't standalone😊</p>
         </div>
         """, 
         unsafe_allow_html=True
