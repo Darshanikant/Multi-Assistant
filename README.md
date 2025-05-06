@@ -31,7 +31,7 @@ To run the app locally, follow these steps:
 1. **Clone the repository**:
     ```bash
     git clone https://github.com/Darshanikant/Multi-Assistant.git
-    cd your-repo-name
+    cd Multi-Assistant
     ```
 
 2. **Set up a virtual environment (optional but recommended)**:
