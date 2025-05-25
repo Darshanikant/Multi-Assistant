@@ -10,42 +10,67 @@ load_dotenv()
 # Define assistant profiles with dark theme colors
 ASSISTANT_PROFILES = {
     "🐍 Python Tutor": {
-        "description": "An expert Python programming tutor who explains concepts with simple code examples.",
-        "color": "#4B8BBE",  # Python blue
+        "description": """You are an expert Python programming tutor. 
+Only respond to questions related to Python programming. 
+If the user asks something outside this topic, politely reply:
+"I can only assist with Python programming-related questions. Please ask accordingly."
+""",
+        "color": "#4B8BBE",
         "icon": "🐍",
-        "accent_color": "#FFD43B"  # Python yellow
+        "accent_color": "#FFD43B"
     },
     "💪 Fitness Coach": {
-        "description": "A professional fitness expert providing personalized workout routines and nutrition advice.",
-        "color": "#FF5252",  # Bright red
+        "description": """You are a certified fitness coach.
+Only answer questions about workouts, fitness, exercises, and nutrition.
+If the user asks something unrelated, respond with:
+"I specialize in fitness and nutrition. Please ask questions related to those topics."
+""",
+        "color": "#FF5252",
         "icon": "💪",
-        "accent_color": "#69F0AE"  # Mint green
+        "accent_color": "#69F0AE"
     },
     "✈️ Travel Planner": {
-        "description": "A travel specialist helping you plan trips, recommend places, and give practical travel advice.",
-        "color": "#40C4FF",  # Bright blue
+        "description": """You are a professional travel planner.
+Only respond to questions about travel, destinations, visas, accommodations, and tips.
+If the question is unrelated, say:
+"I'm here to help with travel planning. Please ask a travel-related question."
+""",
+        "color": "#40C4FF",
         "icon": "✈️",
-        "accent_color": "#FFAB40"  # Orange
+        "accent_color": "#FFAB40"
     },
     "💼 Career Advisor": {
-        "description": "A career counselor offering resume tips, interview preparation, and strategic career planning.",
-        "color": "#B388FF",  # Purple
+        "description": """You are a career advisor.
+Only help with resumes, interviews, job search, and career planning.
+If the user asks off-topic questions, reply:
+"I can only help with career-related queries like resumes, interviews, and jobs."
+""",
+        "color": "#B388FF",
         "icon": "💼",
-        "accent_color": "#EA80FC"  # Pink
+        "accent_color": "#EA80FC"
     },
     "🧠 Mental Wellness Guide": {
-        "description": "A supportive wellness coach providing kind advice on managing stress and emotions.",
-        "color": "#64FFDA",  # Teal
+        "description": """You are a mental wellness guide.
+Only respond to queries about stress, emotions, mindset, and wellness.
+If asked something unrelated, respond:
+"I'm focused on mental wellness. Please ask about emotional or mental well-being."
+""",
+        "color": "#64FFDA",
         "icon": "🧠",
-        "accent_color": "#80D8FF"  # Light blue
+        "accent_color": "#80D8FF"
     },
     "💻Code Assistant": {
-        "description": "A coding assistant that helps you with programming tasks and debugging.",
-        "color": "#FF6F00",  # Orange
+        "description": """You are a helpful code assistant.
+Only answer questions about programming, debugging, or writing code.
+If the question is not about coding, respond:
+"I can assist only with coding-related issues. Please ask accordingly."
+""",
+        "color": "#FF6F00",
         "icon": "💻",
-        "accent_color": "#FFD600"  # Yellow
+        "accent_color": "#FFD600"
     },
 }
+
 
 # Streamlit config
 st.set_page_config(
